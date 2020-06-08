@@ -19,15 +19,15 @@ import com.example.demo.service.SinhVienService;
 @RequestMapping("/sinhvien")
 public class SinhVienController {
 	@Autowired
-	private SinhVienService sinhVienService;
+	private SinhVienService sinhVienServiceImpl;
 	
 	@GetMapping
 	public List<SinhVienDTO> getAll(){
-		return sinhVienService.getAll();
+		return sinhVienServiceImpl.getAll();
 	}
 	@PostMapping(value="/add")
 	public ResponseEntity<SinhVienDTO> addNew(@RequestBody SinhVienDTO svdto){
-		SinhVienDTO addNew = sinhVienService.addNew(svdto);
+		SinhVienDTO addNew = sinhVienServiceImpl.addNew(svdto);
 		if (addNew == null) {
 			return ResponseEntity.badRequest().build();
 		}
@@ -36,7 +36,7 @@ public class SinhVienController {
 	}
 	@PutMapping(value="/update/{ma}")
 	public ResponseEntity<SinhVienDTO> update(@PathVariable("ma") int ma, @RequestBody SinhVienDTO svdto){
-		SinhVienDTO update = sinhVienService.update(ma, svdto);
+		SinhVienDTO update = sinhVienServiceImpl.update(ma, svdto);
 		if (update == null) {
 			return ResponseEntity.badRequest().build();
 		}
